@@ -3,7 +3,7 @@ package br.com.devsiqueira.gestao_de_vagas.modules.candidate.useCases;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.devsiqueira.gestao_de_vagas.exceptions.UseFoundException;
+import br.com.devsiqueira.gestao_de_vagas.exceptions.UserFoundException;
 import br.com.devsiqueira.gestao_de_vagas.modules.candidate.CandidateEntity;
 import br.com.devsiqueira.gestao_de_vagas.modules.candidate.CandidateRepository;
 
@@ -17,7 +17,7 @@ public class CreateCandidateUseCase {
         this.candidateRepository
         .findByUsernameOrEmail(candidateEntity.getUsername(), candidateEntity.getEmail())
         .ifPresent((user) -> {
-            throw new UseFoundException();
+            throw new UserFoundException();
         });
 
         return this.candidateRepository.save(candidateEntity);
